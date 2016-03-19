@@ -16,7 +16,7 @@ void setup(void)
 {
 	pinMode(led, OUTPUT);
 	digitalWrite(led, LOW);
-	Jink.begin(115200,8,9); // Baudrate, RX, TX
+	Jink.begin(115200,8,9,10); // Baudrate, RX, TX, WAKEUP
 }
 
 void loop(void)

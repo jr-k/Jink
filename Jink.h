@@ -99,7 +99,13 @@ class Jink_ {
     public:
         Jink_();
         ~Jink_();
+		
+        void begin();
+        void begin(unsigned long);
         void begin(unsigned long, uint8_t, uint8_t);
+        void begin(unsigned long, uint8_t, uint8_t, uint8_t);
+        void begin(unsigned long, uint8_t, uint8_t, uint8_t, uint8_t);
+		
         void end();
 		
 		void reset(void);
@@ -142,9 +148,13 @@ class Jink_ {
 		void dispBitmap(const void * p, int x0, int y0);
 		
     private:
-
-		const uint8_t _wake_up = 2;
-		const uint8_t _reset = 3;
+	
+		const unsigned long defaultBaudr = 115200;
+		const uint8_t defaultRX = 8;
+		const uint8_t defaultTX = 9;
+		
+		uint8_t _wakeup_pin = 10;
+		uint8_t _reset_pin = 11;
 		const char* LF_SEPARATOR = "§";
 
 		const unsigned char _cmd_handshake[8] = {0xA5, 0x00, 0x09, CMD_HANDSHAKE, 0xCC, 0x33, 0xC3, 0x3C};				//CMD_HANDSHAKE

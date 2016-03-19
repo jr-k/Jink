@@ -18,6 +18,7 @@ Jink_ Jink;
 SoftwareSerial* _serial;
 String textBuffer;
 
+
 Jink_::Jink_() {
 	
 }
@@ -25,15 +26,23 @@ Jink_::Jink_() {
 Jink_::~Jink_() {	
 }
 
-void Jink_::begin(unsigned long baudr, uint8_t RX, uint8_t TX) {
-	_serial = new SoftwareSerial(RX, TX); // RX, TX
+
+void Jink_::begin(unsigned long baudr) { begin(baudr, defaultTX, defaultRX, _wakeup_pin, _reset_pin); }
+void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin) { begin(baudr, RX_pin, TX_pin, _wakeup_pin, _reset_pin); }
+void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin, uint8_t wakeup_pin) { begin(baudr, RX_pin, TX_pin, wakeup_pin, _reset_pin); }
+void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin, uint8_t wakeup_pin, uint8_t reset_pin) {
+	_serial = new SoftwareSerial(RX_pin, TX_pin); // RX, TX
     _serial->begin(baudr);
 	delay(1000);
-	pinMode(_wake_up, HIGH);
-	pinMode(_reset, HIGH);
+	_wakeup_pin = wakeup_pin;
+	_reset_pin = reset_pin;
+	pinMode(_wakeup_pin, HIGH);
+	pinMode(_reset_pin, HIGH);
 	defaultConfig();
 	clearText();
 }
+
+
 
 void Jink_::end() {
     _serial->end();
@@ -50,22 +59,22 @@ void Jink_::defaultConfig(void)
 
 void Jink_::reset(void)
 {
-	digitalWrite(_reset, LOW);
+	digitalWrite(_reset_pin, LOW);
 	delayMicroseconds(10);
-	digitalWrite(_reset, HIGH);
+	digitalWrite(_reset_pin, HIGH);
 	delayMicroseconds(500);
-	digitalWrite(_reset, LOW);
+	digitalWrite(_reset_pin, LOW);
 	delay(3000);
 }
 
 
 void Jink_::wakeup(void)
 {
-	digitalWrite(_wake_up, LOW);
+	digitalWrite(_wakeup_pin, LOW);
 	delayMicroseconds(10);
-	digitalWrite(_wake_up, HIGH);
+	digitalWrite(_wakeup_pin, HIGH);
 	delayMicroseconds(500);
-	digitalWrite(_wake_up, LOW);
+	digitalWrite(_wakeup_pin, LOW);
 	delay(10);
 }
 
