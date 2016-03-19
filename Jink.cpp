@@ -45,16 +45,6 @@ void Jink_::defaultConfig(void)
 }
 
 
-
-
-/*******************************************************************************
-* Function Name  : void reset(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
 void Jink_::reset(void)
 {
 	digitalWrite(_reset, LOW);
@@ -64,14 +54,8 @@ void Jink_::reset(void)
 	digitalWrite(_reset, LOW);
 	delay(3000);
 }
-/*******************************************************************************
-* Function Name  : void init(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::wakeup(void)
 {
 	digitalWrite(_wake_up, LOW);
@@ -82,14 +66,7 @@ void Jink_::wakeup(void)
 	delay(10);
 }
 
-/*******************************************************************************
-* Function Name  : void handshake(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
 void Jink_::handshake(void)
 {
 	memcpy(_cmd_buff, _cmd_handshake, 8);
@@ -97,14 +74,8 @@ void Jink_::handshake(void)
 	
 	_putchars(_cmd_buff, 9);
 }
-/*******************************************************************************
-* Function Name  : void setBaud(long baud)
-* Description    : set uart baud
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::setBaud(long baud)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -128,17 +99,10 @@ void Jink_::setBaud(long baud)
 	_putchars(_cmd_buff, 13);	
 	
 	delay(10);	
-	// Serial.begin(baud);
 	_serial->begin(baud);
 }
-/*******************************************************************************
-* Function Name  : void readBaud(void)
-* Description    : read uart baud
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::readBaud(void)
 {
 	memcpy(_cmd_buff, _cmd_read_baud, 8);
@@ -146,14 +110,8 @@ void Jink_::readBaud(void)
 	
 	_putchars(_cmd_buff, 9);
 }
-/*******************************************************************************
-* Function Name  : void setMemory(unsigned char mode)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::setMemory(unsigned char mode)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -174,14 +132,7 @@ void Jink_::setMemory(unsigned char mode)
 	_putchars(_cmd_buff, 10);		
 }
 
-/*******************************************************************************
-* Function Name  : void enterStopmode(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
 void Jink_::enterStopmode(void)
 {
 	memcpy(_cmd_buff, _cmd_stopmode, 8);
@@ -189,14 +140,8 @@ void Jink_::enterStopmode(void)
 	
 	_putchars(_cmd_buff, 9);
 }
-/*******************************************************************************
-* Function Name  : void udpate(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::udpate(void)
 {
 	memcpy(_cmd_buff, _cmd_update, 8);
@@ -204,14 +149,8 @@ void Jink_::udpate(void)
 	
 	_putchars(_cmd_buff, 9);
 }
-/*******************************************************************************
-* Function Name  : void screenRotation(unsigned char mode)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::screenRotation(unsigned char mode)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -231,14 +170,8 @@ void Jink_::screenRotation(unsigned char mode)
 	
 	_putchars(_cmd_buff, 10);	
 }
-/*******************************************************************************
-* Function Name  : void loadFont(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::loadFont(void)
 {
 	memcpy(_cmd_buff, _cmd_load_font, 8);
@@ -246,14 +179,8 @@ void Jink_::loadFont(void)
 	
 	_putchars(_cmd_buff, 9);	
 }
-/*******************************************************************************
-* Function Name  : void loadPic(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::loadPic(void)
 {
 	memcpy(_cmd_buff, _cmd_load_pic, 8);
@@ -261,14 +188,8 @@ void Jink_::loadPic(void)
 	
 	_putchars(_cmd_buff, 9);
 }
-/*******************************************************************************
-* Function Name  : void setColor(unsigned char color, unsigned char bkcolor)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::setColor(unsigned char color, unsigned char bkcolor)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -289,14 +210,8 @@ void Jink_::setColor(unsigned char color, unsigned char bkcolor)
 	
 	_putchars(_cmd_buff, 11);
 }
-/*******************************************************************************
-* Function Name  : void setEnglishFont(unsigned char font)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::setEnglishFont(unsigned char font)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -316,14 +231,8 @@ void Jink_::setEnglishFont(unsigned char font)
 	
 	_putchars(_cmd_buff, 10);	
 }
-/*******************************************************************************
-* Function Name  : void setChineseFont(unsigned char font)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::setChineseFont(unsigned char font)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -343,14 +252,8 @@ void Jink_::setChineseFont(unsigned char font)
 	
 	_putchars(_cmd_buff, 10);
 }
-/*******************************************************************************
-* Function Name  : void drawPixel(int x0, int y0)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::drawPixel(int x0, int y0)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -373,14 +276,8 @@ void Jink_::drawPixel(int x0, int y0)
 	
 	_putchars(_cmd_buff, 13);
 }
-/*******************************************************************************
-* Function Name  : void drawLine(int x0, int y0, int x1, int y1)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::drawLine(int x0, int y0, int x1, int y1)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -407,14 +304,8 @@ void Jink_::drawLine(int x0, int y0, int x1, int y1)
 	
 	_putchars(_cmd_buff, 17);	
 }
-/*******************************************************************************
-* Function Name  : void fillRect(int x0, int y0, int x1, int y1)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::fillRect(int x0, int y0, int x1, int y1)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -441,14 +332,8 @@ void Jink_::fillRect(int x0, int y0, int x1, int y1)
 	
 	_putchars(_cmd_buff, 17);		
 }
-/*******************************************************************************
-* Function Name  : void drawCircle(int x0, int y0, int r)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::drawCircle(int x0, int y0, int r)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -474,14 +359,8 @@ void Jink_::drawCircle(int x0, int y0, int r)
 	
 	_putchars(_cmd_buff, 15);
 }
-/*******************************************************************************
-* Function Name  : void fillCircle(int x0, int y0, int r)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::fillCircle(int x0, int y0, int r)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -507,14 +386,8 @@ void Jink_::fillCircle(int x0, int y0, int r)
 	
 	_putchars(_cmd_buff, 15);	
 }
-/*******************************************************************************
-* Function Name  : void drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -545,14 +418,8 @@ void Jink_::drawTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
 	
 	_putchars(_cmd_buff, 21);		
 }
-/*******************************************************************************
-* Function Name  : void fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -583,14 +450,8 @@ void Jink_::fillTriangle(int x0, int y0, int x1, int y1, int x2, int y2)
 	
 	_putchars(_cmd_buff, 21);	
 }
-/*******************************************************************************
-* Function Name  : void clear(void)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::clear(void)
 {
 	_cmd_buff[0] = FRAME_B;
@@ -609,14 +470,7 @@ void Jink_::clear(void)
 	_putchars(_cmd_buff, 9);	
 }
 
-/*******************************************************************************
-* Function Name  : void dispChar(unsigned char ch, int x0, int y0);
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
 void Jink_::dispChar(unsigned char ch, int x0, int y0)
 {
 	unsigned char buff[2];
@@ -626,14 +480,8 @@ void Jink_::dispChar(unsigned char ch, int x0, int y0)
 	
 	dispString(buff, x0, y0);
 }
-/*******************************************************************************
-* Function Name  : void dispString(const void * p, int x0, int y0)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::dispString(const void * p, int x0, int y0)
 {
 	int string_size;
@@ -667,14 +515,8 @@ void Jink_::dispString(const void * p, int x0, int y0)
 	
 	_putchars(_cmd_buff, string_size + 5);
 }
-/*******************************************************************************
-* Function Name  : void dispBitmap(const void * p, int x0, int y0)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
+
+
 void Jink_::dispBitmap(const void * p, int x0, int y0)
 {
 	int string_size;
@@ -709,18 +551,6 @@ void Jink_::dispBitmap(const void * p, int x0, int y0)
 }
 
 
-
-
-
-
-/*******************************************************************************
-* Function Name  : static void _putchars(const unsigned char * ptr, int n)
-* Description    : 
-* Input          : 
-* Output         : None
-* Return         : 
-* Attention		   : None
-*******************************************************************************/
 void Jink_::_putchars(unsigned char * ptr, int n)
 {
 	int i, x;
@@ -728,18 +558,11 @@ void Jink_::_putchars(unsigned char * ptr, int n)
 	for(i = 0; i < n; i++)
 	{
 	    x = ptr[i];
-		// Serial.write(x);
 		_serial->write(x);
 	}
 }
-/*******************************************************************************
-* Function Name  : static unsigned char _verify(const void * ptr, int n)
-* Description    : 
-* Input          : ptr      
-                   n        
-* Output         : None
-* Return         : 
-*******************************************************************************/
+
+
 unsigned char Jink_::_verify(void * ptr, int n)
 {
 	int i;
