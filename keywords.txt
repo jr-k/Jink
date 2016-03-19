@@ -1,0 +1,46 @@
+#######################################
+# Syntax Coloring Map for Jink
+#######################################
+
+#######################################
+# Datatypes 
+#######################################
+
+Jink	KEYWORD1
+
+#######################################
+# Methods and Functions 
+#######################################
+
+begin						KEYWORD2
+end							KEYWORD2
+reset						KEYWORD2
+wakeup						KEYWORD2
+defaultConfig				KEYWORD2
+readBaud					KEYWORD2
+setBaud						KEYWORD2
+handshake					KEYWORD2
+setMemory					KEYWORD2
+enterStopmode				KEYWORD2
+udpate						KEYWORD2
+screenRotation				KEYWORD2
+loadFont					KEYWORD2
+loadPic						KEYWORD2
+setColor					KEYWORD2
+setEnglishFont				KEYWORD2
+setChineseFont				KEYWORD2
+drawPixel					KEYWORD2
+drawLine					KEYWORD2
+fillRect					KEYWORD2
+drawCircle					KEYWORD2
+fillCircle					KEYWORD2
+drawTriangle				KEYWORD2
+fillTriangle				KEYWORD2
+clear						KEYWORD2
+dispChar					KEYWORD2
+dispString					KEYWORD2
+dispBitmap					KEYWORD2
+
+#######################################
+# Constants 
+#######################################
