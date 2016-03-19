@@ -16,6 +16,7 @@
 
 Jink_ Jink;
 SoftwareSerial* _serial;
+String textBuffer;
 
 Jink_::Jink_() {
 	
@@ -27,9 +28,11 @@ Jink_::~Jink_() {
 void Jink_::begin(unsigned long baudr, uint8_t RX, uint8_t TX) {
 	_serial = new SoftwareSerial(RX, TX); // RX, TX
     _serial->begin(baudr);
+	delay(1000);
 	pinMode(_wake_up, HIGH);
 	pinMode(_reset, HIGH);
 	defaultConfig();
+	clearText();
 }
 
 void Jink_::end() {
@@ -516,6 +519,11 @@ void Jink_::dispString(const void * p, int x0, int y0)
 	_putchars(_cmd_buff, string_size + 5);
 }
 
+void Jink_::dispString(String str, int x0, int y0)
+{
+	dispString(str.c_str(), x0, y0);
+}
+
 
 void Jink_::dispBitmap(const void * p, int x0, int y0)
 {
@@ -578,6 +586,68 @@ unsigned char Jink_::_verify(void * ptr, int n)
 }
 
 
+
+void Jink_::clearText()
+{
+	textBuffer = "";
+}
+
+
+void Jink_::persistText(String str)
+{
+	textBuffer += str;
+}
+
+void Jink_::persistTextLn(String str)
+{
+	textBuffer += LF_SEPARATOR + str;
+}
+
+
+void Jink_::flushText(int x0, int y0, uint8_t fontSize)
+{
+	
+	Jink.setColor(BLACK, WHITE);
+	clear();
+	
+	switch (fontSize) {
+		case 32:
+			setChineseFont(GBK32);
+			setEnglishFont(ASCII32);
+		break;
+		case 48:
+			setChineseFont(GBK48);
+			setEnglishFont(ASCII48);
+		break;
+		case 64:
+			setChineseFont(GBK64);
+			setEnglishFont(ASCII64);
+		break;
+		default:
+			setChineseFont(GBK32);
+			setEnglishFont(ASCII32);
+		break;
+		
+	}
+
+	char *cstr = new char[textBuffer.length() + 1];
+	strcpy(cstr, textBuffer.c_str());
+	const char * s = LF_SEPARATOR;
+	char *token;
+	token = strtok(cstr, s);
+	int cpt = 0;
+
+	while( token != NULL ) 
+	{
+		dispString(token, x0, y0 + (cpt * fontSize));
+		token = strtok(NULL, s);
+		cpt++;
+	}
+
+	delete [] cstr;
+	clearText();
+	udpate();
+}
 
 
 

@@ -40,6 +40,10 @@ clear						KEYWORD2
 dispChar					KEYWORD2
 dispString					KEYWORD2
 dispBitmap					KEYWORD2
+clearText					KEYWORD2
+persistText					KEYWORD2
+persistTextLn				KEYWORD2
+flushText					KEYWORD2
 
 #######################################
 # Constants 

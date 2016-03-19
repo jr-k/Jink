@@ -132,6 +132,12 @@ class Jink_ {
 
 		void dispChar(unsigned char ch, int x0, int y0);
 		void dispString(const void * p, int x0, int y0);
+		void dispString(String str, int x0, int y0);
+		
+		void clearText();
+		void persistText(String str);
+		void persistTextLn(String str);
+		void flushText(int x0, int y0, uint8_t size);
 
 		void dispBitmap(const void * p, int x0, int y0);
 		
@@ -139,6 +145,7 @@ class Jink_ {
 
 		const uint8_t _wake_up = 2;
 		const uint8_t _reset = 3;
+		const char* LF_SEPARATOR = "§";
 
 		const unsigned char _cmd_handshake[8] = {0xA5, 0x00, 0x09, CMD_HANDSHAKE, 0xCC, 0x33, 0xC3, 0x3C};				//CMD_HANDSHAKE
 		const unsigned char _cmd_read_baud[8] = {0xA5, 0x00, 0x09, CMD_READ_BAUD, 0xCC, 0x33, 0xC3, 0x3C};				//CMD_READ_BAUD

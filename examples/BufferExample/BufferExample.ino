@@ -2,16 +2,6 @@
 
 const int led = 13;
 
-void draw_text(String str, int x, int y)
-{
-	Jink.setColor(BLACK, WHITE);
-	Jink.clear();
-	Jink.setEnglishFont(ASCII64);
-	Jink.dispString(str, x, y);
-	Jink.udpate();
-	delay(3000);
-}
-
 void setup(void)
 {
 	pinMode(led, OUTPUT);
@@ -21,9 +11,13 @@ void setup(void)
 
 void loop(void)
 {
-	// Draw some text into e-display screen
-	draw_text("Hello World !", 200,250);
-	draw_text("That's an awesome display !", 20,250);
+	// Draw some text into e-display screen 
+  Jink.persistText("Hello World !");
+  Jink.persistTextLn("That's an awesome display !");
+  Jink.persistTextLn("You can add some text ");
+  Jink.persistText("on the same line");
+  Jink.persistTextLn("Or another with 'persistTextLn'");
+  Jink.flushText(0, 30, 48); // x, y, fontSize(32, 48, 64)
 	
 	// Low energy consumption mode
 	Jink.enterStopmode();
@@ -36,5 +30,4 @@ void loop(void)
 		delay(1000);
 	}
 }
-
 
