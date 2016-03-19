@@ -4,12 +4,7 @@
 * Notice     		  : Wrapped Object Library of waveshare's epd library with editable serial pins
 *
 **********************************************************************************************************
-* File                : epd.c
-* Hardware Environment: 
-* Build Environment   : RealView MDK-ARM  Version: 4.74
-* Version             : V1.0
-* By                  : V
-*
+*									   Based on WaveShare "epd" library
 *                                  (c) Copyright 2005-2014, WaveShare
 *                                       http://www.waveshare.net
 *                                          All Rights Reserved
