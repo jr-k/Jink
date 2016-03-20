@@ -45,6 +45,7 @@ void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin, uint8_t w
 
 
 void Jink_::end() {
+	enterStopmode();
     _serial->end();
 }
 
@@ -656,6 +657,44 @@ void Jink_::flushText(int x0, int y0, uint8_t fontSize)
 	delete [] cstr;
 	clearText();
 	udpate();
+}
+
+
+
+
+
+void Jink_::startTextSequence() {
+	clear();
+	setColor(BLACK, WHITE);
+}
+
+void Jink_::endTextSequence() {
+	udpate();
+}
+
+void Jink_::addTextSequence(String str, int x0, int y0, uint8_t fontSize)
+{
+	switch (fontSize) {
+		case 32:
+			setChineseFont(GBK32);
+			setEnglishFont(ASCII32);
+		break;
+		case 48:
+			setChineseFont(GBK48);
+			setEnglishFont(ASCII48);
+		break;
+		case 64:
+			setChineseFont(GBK64);
+			setEnglishFont(ASCII64);
+		break;
+		default:
+			setChineseFont(GBK32);
+			setEnglishFont(ASCII32);
+		break;
+		
+	}
+
+	dispString(str, x0, y0);
 }
 
 

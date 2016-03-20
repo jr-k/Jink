@@ -140,10 +140,16 @@ class Jink_ {
 		void dispString(const void * p, int x0, int y0);
 		void dispString(String str, int x0, int y0);
 		
+		// Relative text sequence
 		void clearText();
 		void persistText(String str);
 		void persistTextLn(String str);
 		void flushText(int x0, int y0, uint8_t size);
+		
+		// Absolute text sequence
+		void startTextSequence();
+		void addTextSequence(String str, int x0, int y0, uint8_t size);
+		void endTextSequence();
 
 		void dispBitmap(const void * p, int x0, int y0);
 		
