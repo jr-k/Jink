@@ -92,7 +92,10 @@ set screen rotation
 #define    EPD_NORMAL                         0                                                        //screen normal
 #define    EPD_INVERSION                      1      
 
-
+#define			SCREEN_RX_PIN				A0
+#define			SCREEN_TX_PIN				A1
+#define			SCREEN_WAKEUP_PIN			A2
+#define			SCREEN_RESET_PIN			A3
 
 
 class Jink_ {
@@ -100,11 +103,11 @@ class Jink_ {
         Jink_();
         ~Jink_();
 		
-        void begin();
+        // void begin();
         void begin(unsigned long);
-        void begin(unsigned long, uint8_t, uint8_t);
-        void begin(unsigned long, uint8_t, uint8_t, uint8_t);
-        void begin(unsigned long, uint8_t, uint8_t, uint8_t, uint8_t);
+        // void begin(unsigned long, uint8_t, uint8_t);
+        // void begin(unsigned long, uint8_t, uint8_t, uint8_t);
+        // void begin(unsigned long, uint8_t, uint8_t, uint8_t, uint8_t);
 		
         void end();
 		

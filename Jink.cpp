@@ -20,22 +20,19 @@ String textBuffer;
 
 
 Jink_::Jink_() {
-	
+	_serial = new SoftwareSerial(SCREEN_RX_PIN, SCREEN_TX_PIN); // RX, TX
 }
 
 Jink_::~Jink_() {	
+	delete[] _serial;
 }
 
 
-void Jink_::begin(unsigned long baudr) { begin(baudr, defaultTX, defaultRX, _wakeup_pin, _reset_pin); }
-void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin) { begin(baudr, RX_pin, TX_pin, _wakeup_pin, _reset_pin); }
-void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin, uint8_t wakeup_pin) { begin(baudr, RX_pin, TX_pin, wakeup_pin, _reset_pin); }
-void Jink_::begin(unsigned long baudr, uint8_t RX_pin, uint8_t TX_pin, uint8_t wakeup_pin, uint8_t reset_pin) {
-	_serial = new SoftwareSerial(RX_pin, TX_pin); // RX, TX
+void Jink_::begin(unsigned long baudr) { 
     _serial->begin(baudr);
 	delay(1000);
-	_wakeup_pin = wakeup_pin;
-	_reset_pin = reset_pin;
+	_wakeup_pin = SCREEN_WAKEUP_PIN;
+	_reset_pin = SCREEN_RESET_PIN;
 	pinMode(_wakeup_pin, HIGH);
 	pinMode(_reset_pin, HIGH);
 	defaultConfig();
@@ -527,6 +524,9 @@ void Jink_::dispString(const void * p, int x0, int y0)
 	_cmd_buff[string_size + 4] = _verify(_cmd_buff, string_size + 4);
 	
 	_putchars(_cmd_buff, string_size + 5);
+	
+
+	
 }
 
 void Jink_::dispString(String str, int x0, int y0)
